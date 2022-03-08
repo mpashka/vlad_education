@@ -1,0 +1,76 @@
+/* Main game-Grid properties */
+.grid {
+  background-color: lightslategray;
+  border: 3px solid lightslategray;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 3px;
+}
+/* Grid items */
+.block {
+  background-color: bisque;
+  justify-content: center;
+  align-items: center;
+}
+.block:hover{
+  background-color: rgba(255, 228, 196, .6);
+  transition: background-color 1s;
+  cursor: pointer;
+}
+.x {
+  font: bold 50px Arial;
+  position: absolute;
+  color: red;
+}
+.o {
+  font: bold 50px Arial;
+  position: absolute;
+  color: green;
+}
+/* Все, что связанно с "выпадающими" списками" */
+details{
+  display:block;
+  margin: auto;
+  background: #edf2f7;
+  width:400px;
+  border-radius: 8px;
+  overflow:hidden;
+  margin-bottom: 1.5rem;
+}
+summary::-webkit-details-marker{display:none;}
+summary::-moz-list-bullet{list-style-type:none;}
+summary::marker{display:none;}
+summary {
+  display:block;
+  padding: .3em 1em .3em .9em;
+  border-bottom: 1px solid #e2e8f0;
+  font-size:1.4em;
+  cursor: pointer;
+  position: relative;
+}
+summary:after {
+  content: "+";
+  margin-left: .5em;
+  display: inline-block;
+  transition: transform .5s;
+}
+details[open] > summary:after {
+  transform: rotateZ(180deg);
+}
+summary ~ * {
+  padding: 0 1em 0 1.4em;
+}
+details[open] summary ~ *{
+  animation: sweep .5s ease-in-out;
+}
+@keyframes sweep {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}
+summary:focus {
+  outline:0;
+}
