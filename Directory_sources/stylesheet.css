@@ -1,0 +1,25 @@
+body {
+    color: #333;
+    background: bisque;
+}
+
+.container {
+    margin: auto;
+    max-width: 500px;
+}
+.LinksBlock {
+    padding: 30px;
+    margin: 30px;
+    background: white;
+}
+
+.LinksTitle {
+    margin: 0 0 30px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 300;
+    align-self: center;
+}
