@@ -11,14 +11,11 @@ const WINNING_COMBINATIONS = [
   [2, 4, 6]
 ]
 
-let cellElements
-let circleTurn
-let restartButton
-
-window.addEventListener("load", function(event) {
-  __init()
-});
-
+let matrix = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+]
 
 function __init(){
   cellElements = document.querySelectorAll('[data-cell]')
@@ -35,18 +32,32 @@ function startGame() {
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(CIRCLE_CLASS)
-    cell.addEventListener('click', registerClick, { once: true })
+    cell.addEventListener('click', registerClickUI, { once: true })
   })
 }
 
-function registerClick(e) {
+function dataFetching(e) {
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
 
+  updateMatrixData(cell, circleTurn)
+
   if (checkWin(CIRCLE_CLASS) || checkWin(X_CLASS)) return
 
-  placeMark(cell, currentClass)
+  return [cell, currentClass]
+}
 
+function updateMatrixData(cell, circleTurn){
+
+  for (let nodeListIndex = 0; nodeListIndex < cellElements.length; nodeListIndex++){
+    let nodeItem = cellElements.item(nodeListIndex)
+    if (nodeItem == cell){
+      matrix[nodeListIndex%3][nodeListIndex/3] = circleTurn ? 1 : -1
+    }
+  }
+}
+
+function checkStatusOfGame(cell, currentClass){
   if (checkWin(currentClass)) {
     return endGame(1) // Winner is Defined
   }
@@ -79,25 +90,9 @@ function swapTurns() {
 }
 
 function checkWin(currentClass){
-  /*if (cellElements[0][0].classList.contains(currentClass) && cellElements[0][1].classList.contains(currentClass) && cellElements[0][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[1][0].classList.contains(currentClass) && cellElements[1][1].classList.contains(currentClass) && cellElements[1][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[2][0].classList.contains(currentClass) && cellElements[2][1].classList.contains(currentClass) && cellElements[2][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[3][0].classList.contains(currentClass) && cellElements[3][1].classList.contains(currentClass) && cellElements[3][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[4][0].classList.contains(currentClass) && cellElements[4][1].classList.contains(currentClass) && cellElements[4][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[5][0].classList.contains(currentClass) && cellElements[5][1].classList.contains(currentClass) && cellElements[5][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[6][0].classList.contains(currentClass) && cellElements[6][1].classList.contains(currentClass) && cellElements[6][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[7][0].classList.contains(currentClass) && cellElements[7][1].classList.contains(currentClass) && cellElements[7][2].classList.contains(currentClass))
-    console.log(true)*/
-
   return WINNING_COMBINATIONS.some(combination => combination.every(index => cellElements[index].classList.contains(currentClass)))
 }
+
 function checkDraw(){
   return Array.from(cellElements).every(cell => cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS))
 }
