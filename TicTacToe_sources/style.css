@@ -10,6 +10,33 @@
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 3px;
 }
+.container {
+  margin: auto;
+  max-width: 406px;
+  background: bisque;
+}
+.status-messages {
+  padding: 30px;
+  margin: 30px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 300;
+  align-self: center;
+}
+.restartButton {
+  background: coral;
+  border: none;
+  outline: none;
+  margin: 20px 0px 0px 0px;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  height: 40px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s linear;
+}
 /* Grid items */
 .cell {
   --cell-size: calc((400px / 3) - 3px);

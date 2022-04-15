@@ -1,103 +1,71 @@
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
-const WINNING_COMBINATIONS = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
+
+let matrix = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
 ]
-
-let cellElements
-let circleTurn
-let restartButton
-
-window.addEventListener("load", function(event) {
-  __init()
-});
-
 
 function __init(){
   cellElements = document.querySelectorAll('[data-cell]')
   restartButton = document.getElementById('restartButton')
+  statusMessageText = document.querySelector('[game-status-message-text]')
 
   restartButton.addEventListener('click', startGame)
 
   startGame()
 }
 
-function startGame() {
-  circleTurn = false
-
-  cellElements.forEach(cell => {
-    cell.classList.remove(X_CLASS)
-    cell.classList.remove(CIRCLE_CLASS)
-    cell.addEventListener('click', registerClick, { once: true })
-  })
-}
-
-function registerClick(e) {
+function dataFetching(e) {
   const cell = e.target
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
 
-  if (checkWin(CIRCLE_CLASS) || checkWin(X_CLASS)) return
+  updateMatrixData(cell, circleTurn)
 
-  placeMark(cell, currentClass)
-
-  if (checkWin(currentClass)) {
-    return endGame(1) // Winner is Defined
-  }
-  else if (checkDraw()){
-    return endGame(2) // It's Draw
-  }
-  else
-    swapTurns()
+  return [cell, currentClass]
 }
 
-function endGame(stateOfGame){
-  let message
+function updateMatrixData(cell, circleTurn){
+  for (let nodeListIndex = 0; nodeListIndex < cellElements.length; nodeListIndex++){
+    let nodeItem = cellElements.item(nodeListIndex)
 
-  switch (stateOfGame){
-    case 1:
-      console.log(message = circleTurn ? "Circle player is winner" : "X player is winner")
-      break
-    case 2:
-      console.log(message = "Nobody wins. It's Draw!")
-      break
+    if (nodeItem == cell){
+      matrix[Math.trunc(nodeListIndex/3)][nodeListIndex%3] = circleTurn ? 1 : -1
+      console.log(nodeListIndex%3, Math.trunc(nodeListIndex/3), matrix)
+    }
   }
 }
 
-function placeMark(cell, currentClass) {
-  cell.classList.add(currentClass)
-}
+function checkWinner(circleTurn){
 
-function swapTurns() {
-  circleTurn = !circleTurn
-}
+  let symbol = circleTurn ? 1 : -1
 
-function checkWin(currentClass){
-  /*if (cellElements[0][0].classList.contains(currentClass) && cellElements[0][1].classList.contains(currentClass) && cellElements[0][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[1][0].classList.contains(currentClass) && cellElements[1][1].classList.contains(currentClass) && cellElements[1][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[2][0].classList.contains(currentClass) && cellElements[2][1].classList.contains(currentClass) && cellElements[2][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[3][0].classList.contains(currentClass) && cellElements[3][1].classList.contains(currentClass) && cellElements[3][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[4][0].classList.contains(currentClass) && cellElements[4][1].classList.contains(currentClass) && cellElements[4][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[5][0].classList.contains(currentClass) && cellElements[5][1].classList.contains(currentClass) && cellElements[5][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[6][0].classList.contains(currentClass) && cellElements[6][1].classList.contains(currentClass) && cellElements[6][2].classList.contains(currentClass))
-    console.log(true)
-  if (cellElements[7][0].classList.contains(currentClass) && cellElements[7][1].classList.contains(currentClass) && cellElements[7][2].classList.contains(currentClass))
-    console.log(true)*/
+  let rowCounter, colCounter
+  let mainDiag = 0
+  let secondDiag = 0
 
-  return WINNING_COMBINATIONS.some(combination => combination.every(index => cellElements[index].classList.contains(currentClass)))
+  for(let i = 0; i < 3; i++){
+    mainDiag += matrix[i][i]
+    secondDiag += matrix[3-i-1][i]
+
+    rowCounter = 0
+    colCounter = 0
+    for(let j = 0; j < 3; j++){
+      rowCounter += matrix[i][j]
+      colCounter += matrix[j][i]
+    }
+
+    if (rowCounter == symbol*3) return statusMessageShow("Row")
+    if (colCounter == symbol*3) return statusMessageShow("Column")
+    if (mainDiag == symbol*3) return statusMessageShow("Main Diagonal")
+    if (secondDiag == symbol*3) return statusMessageShow("Second Diagonal")
+    statusMessageShow("", circleTurn)
+  }
 }
 function checkDraw(){
-  return Array.from(cellElements).every(cell => cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS))
+  if (matrix.every(row => row.every(element => element != 0))) return true
+}
+function swapTurns() {
+  circleTurn = !circleTurn
 }
