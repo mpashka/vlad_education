@@ -11,6 +11,9 @@ function __init(){
   cellElements = document.querySelectorAll('[data-cell]')
   restartButton = document.getElementById('restartButton')
   statusMessageText = document.querySelector('[game-status-message-text]')
+  scorePlayer1Text = document.querySelector('[game-score-player1-text]')
+  scorePlayer2Text = document.querySelector('[game-score-player2-text]')
+  winnerPosGraphic = document.createElement("div")
 
   restartButton.addEventListener('click', startGame)
 
@@ -29,6 +32,7 @@ function dataFetching(e) {
 function updateMatrixData(cell, circleTurn){
   for (let nodeListIndex = 0; nodeListIndex < cellElements.length; nodeListIndex++){
     let nodeItem = cellElements.item(nodeListIndex)
+
 
     if (nodeItem == cell){
       matrix[Math.trunc(nodeListIndex/3)][nodeListIndex%3] = circleTurn ? 1 : -1
@@ -56,10 +60,10 @@ function checkWinner(circleTurn){
       colCounter += matrix[j][i]
     }
 
-    if (rowCounter == symbol*3) return statusMessageShow("Row")
-    if (colCounter == symbol*3) return statusMessageShow("Column")
-    if (mainDiag == symbol*3) return statusMessageShow("Main Diagonal")
-    if (secondDiag == symbol*3) return statusMessageShow("Second Diagonal")
+    if (rowCounter == symbol*3) return statusMessageShow("Row", circleTurn, i)
+    if (colCounter == symbol*3) return statusMessageShow("Column", circleTurn, i)
+    if (mainDiag == symbol*3) return statusMessageShow("Main Diagonal", circleTurn, i)
+    if (secondDiag == symbol*3) return statusMessageShow("Second Diagonal", circleTurn, i)
     statusMessageShow("", circleTurn)
   }
 }
