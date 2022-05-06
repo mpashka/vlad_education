@@ -13,7 +13,7 @@ function __init(){
   statusMessageText = document.querySelector('[game-status-message-text]')
   scorePlayer1Text = document.querySelector('[game-score-player1-text]')
   scorePlayer2Text = document.querySelector('[game-score-player2-text]')
-  winnerPosGraphic = document.createElement("div")
+
 
   restartButton.addEventListener('click', startGame)
 

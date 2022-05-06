@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab3fe772-6092-4b3f-80db-863cdbd3899a" name="Changes" comment="Final version">
+    <list default="true" id="ab3fe772-6092-4b3f-80db-863cdbd3899a" name="Changes" comment="Added VueList 0.1v">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Directory.html" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicTacToe_sources/MyScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe_sources/MyScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicTacToe_sources/UI_Script.js" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe_sources/UI_Script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Final_Version" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,6 +64,8 @@
       <workItem from="1650042467931" duration="238000" />
       <workItem from="1650042919520" duration="11000" />
       <workItem from="1650490406847" duration="17000" />
+      <workItem from="1651254722116" duration="182000" />
+      <workItem from="1651858256128" duration="750000" />
     </task>
     <task id="LOCAL-00001" summary="first version">
       <created>1646734589045</created>
@@ -104,7 +109,21 @@
       <option name="project" value="LOCAL" />
       <updated>1650042528661</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Final version with Graphics">
+      <created>1651254740159</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651254740159</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added VueList 0.1v">
+      <created>1651858844460</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1651858844460</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +145,8 @@
     <MESSAGE value="Completed TicTacToe and some ToDoList" />
     <MESSAGE value="Added some ?API?" />
     <MESSAGE value="Final version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final version" />
+    <MESSAGE value="Final version with Graphics" />
+    <MESSAGE value="Added VueList 0.1v" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added VueList 0.1v" />
   </component>
 </project>

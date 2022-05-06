@@ -56,29 +56,18 @@ function registerClick(e) {
 }
 
 function statusMessageShow(condition, circleTurn, i){
+    winnerPosGraphic = document.createElement("div")
+
     switch (condition){
         case "Row":
             statusMessageText.innerText = "Row Win"
             if (!circleTurn) scorePlayer1Text.innerText = "Player 1: " + ++player1_wins
             else scorePlayer2Text.innerText = "Player 2: " + ++player2_wins
+            winnerPosGraphic = document.createElement("div")
 
-            switch (i){
-                case 0:
-                    winnerPos = 1
-                    winnerPosGraphic.setAttribute("class", "cell HorizontalCombinationWin")
-                    cellElements[winnerPos].appendChild(winnerPosGraphic)
-                    break
-                case 1:
-                    winnerPos = 4
-                    winnerPosGraphic.setAttribute("class", "cell HorizontalCombinationWin")
-                    cellElements[winnerPos].appendChild(winnerPosGraphic)
-                    break
-                case 2:
-                    winnerPos = 7
-                    winnerPosGraphic.setAttribute("class", "cell HorizontalCombinationWin")
-                    cellElements[winnerPos].appendChild(winnerPosGraphic)
-                    break
-            }
+            winnerPos = i*3+1
+            winnerPosGraphic.setAttribute("class", "cell HorizontalCombinationWin")
+            cellElements[winnerPos].appendChild(winnerPosGraphic)
             break
         case "Column":
             statusMessageText.innerText = "Column Win"
