@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="VueStyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>TaskListVue</title>
+</head>
+
+<body>
+<div id="app">
+    <div class="stats">
+        <h3 class="stats_title">{{"Текущих задач: "+ tasks.length}}</h3>
+    </div>
+    <transition-group name="slide-fade" tag="p">
+    <task
+            v-on:task_delete="delete_task(index)"
+            :data="data"
+            v-for="(data,index) in tasks"
+            :key="index">
+    </task>
+    </transition-group>
+    <div class="add_task">
+        <div class="add_task_input ">
+            <input
+                    placeholder="Новая задача..."
+                    type="text"
+                    v-model="new_task.title"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "20">
+        </div>
+        <button class="add_task_btn"
+                @click="add_task">Add</button>
+    </div>
+</div>
+</body>
+<script src="VueScript.js"></script>
+</html>
